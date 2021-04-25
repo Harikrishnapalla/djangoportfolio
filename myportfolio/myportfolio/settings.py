@@ -15,11 +15,24 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+with open(BASE_DIR + '/serverconfig.env') as f:
+    read_data = f.readlines()
+env = {}
+for line in read_data:
+    env_line = line.split("=")
+    env[f'{env_line[0].strip()}'] = env_line[1].strip()
+print("@@@@@@@@@@@@@@@@@@", env['PRODUCTION_ENV'])
 # static files
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+if env['PRODUCTION_ENV'] == 'true':
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    DEBUG = False
+    ALLOWED_HOSTS = ['*']
+elif env['PRODUCTION_ENV'] == 'false':
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+    DEBUG = True
+    ALLOWED_HOSTS = []
+else:
+    pass
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
@@ -32,9 +45,9 @@ TEMPLATE_DIRS = (
 SECRET_KEY = 'br8a8)(qwx!s_377gmiadiqq1_50axjt5fgq1mi9^48n1*egl3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
