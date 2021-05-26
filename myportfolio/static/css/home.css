@@ -28,7 +28,7 @@ html, body, .page {
 }
 
 #p1 { background: darkslateblue; }
-#p2 { background: tomato; }
+#p2 { background: white;color: black }
 #p3 { background: gold; }
 #p4 { background: deeppink; }
 #p5 { background: rebeccapurple; }
