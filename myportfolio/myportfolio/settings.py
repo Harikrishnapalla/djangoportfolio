@@ -28,7 +28,8 @@ if env['PRODUCTION_ENV'] == 'true':
     DEBUG = False
     ALLOWED_HOSTS = ['*']
 elif env['PRODUCTION_ENV'] == 'false':
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+    # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     DEBUG = True
     ALLOWED_HOSTS = []
 else:
