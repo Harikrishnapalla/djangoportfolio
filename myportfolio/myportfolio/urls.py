@@ -22,3 +22,7 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('', views.home)
 ]
+handler404 = 'portfolio.views.error_404'
+# handler500 = 'portfolio.views.error_500'
+# handler403 = 'portfolio.views.error_403'
+# handler400 = 'portfolio.views.error_400'
